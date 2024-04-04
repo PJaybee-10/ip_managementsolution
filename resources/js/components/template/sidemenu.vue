@@ -1,9 +1,7 @@
 <template>
   <aside id="sidebar" class="main-sidebar sidebar-dark-primary elevation-4">
     <router-link to="/all_employee" class="brand-link">
-      <img :src="img" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: 0.8" />
-      <span class="brand-text font-weight-light">PREMIER</span> <br>
-      <h6 class="font-weight-light">PREMIER NEPHRO CARE SYSTEM INC.</h6>
+      <span class="brand-text font-weight-light">IP ADDRESS MANAGEMENT</span> 
     </router-link>
     <div class="sidebar">
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
@@ -13,7 +11,7 @@
       </div>
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item"
+          <!-- <li class="nav-item"
             :class="{ 'menu-open': this.$route.name == 'company_add' || this.$route.name == 'patients_add'  || this.$route.name == 'company_add' || this.$route.name == 'batch_list' || this.$route.name == 'batch_add' || this.$route.name == 'patients_list' || this.$route.name == 'doctors_list' || this.$route.name == 'rproduct_list' || this.$route.name == 'company_list'}">
             <a href="#" class="nav-link"
               :class="{ 'active': this.$route.name == 'patients_list' || this.$route.name == 'patients_add'  || this.$route.name == 'company_add' || this.$route.name == 'batch_list' || this.$route.name == 'batch_add' || this.$route.name == 'doctors_list' || this.$route.name == 'company_list' }">
@@ -51,15 +49,8 @@
                     Company
                   </a></router-link>
               </li>
-              <!-- <li class="nav-item">
-                <router-link to="/product_list"> <a href="#" class="nav-link"
-                    :class="{ 'active': this.$route.name == 'product_list' || this.$route.name == 'product_add' }">
-                    <i class="fas fa-list"></i>
-                    Products
-                  </a></router-link>
-              </li> -->
             </ul>
-          </li>
+          </li> -->
 
           <li class="nav-item">
             <router-link to="/manage_session" class="collapse-item"><a href="#" class="nav-link" id="manage_session"
@@ -69,7 +60,7 @@
               </a> </router-link>
           </li>
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <router-link to="/userslist" class="collapse-item"><a href="#" class="nav-link" id="usermenu"
                 :class="{ 'active': this.$route.name == 'userslist' || this.$route.name == 'usersadd' }">
                 <i class="fas fa-users"></i>
@@ -155,7 +146,7 @@
                 <i class="fas fa-share"></i>
                 Revenue Sharing
               </a> </router-link>
-          </li>
+          </li> -->
 
           <li class="nav-item">
             <router-link to="/logs" ><a href="#" class="nav-link" id="revenuemenu"
@@ -166,7 +157,7 @@
           </li>
 
 
-          <li class="nav-item"
+          <!-- <li class="nav-item"
             :class="{ 'menu-open': this.$route.name == 'transaction_list' || this.$route.name == 'stocks' || this.$route.name == 'payment'  || this.$route.name == 'transaction' || this.$route.name == 'sales' || this.$route.name == 'ledger' || this.$route.name == 'product_add' || this.$route.name == 'rproduct_add' || this.$route.name == 'rproduct_list' || this.$route.name == 'product_list' }">
             <a href="#" class="nav-link"
               :class="{ 'active': this.$route.name == 'transaction_list' || this.$route.name == 'stocks'  || this.$route.name == 'payment'  || this.$route.name == 'transaction' || this.$route.name == 'sales'  || this.$route.name == 'ledger' || this.$route.name == 'rproduct_list' || this.$route.name == 'product_list' || this.$route.name == 'rproduct_add'}">
@@ -191,7 +182,6 @@
                   </a></router-link>
               </li>
               <li class="nav-item">
-                <!-- <router-link to="/rproduct_list"><a href="#" class="nav-link" -->
                 <router-link to="/rproduct_add/0"><a href="#" class="nav-link"
                     :class="{ 'active': this.$route.name == 'rproduct_list' || this.$route.name == 'rproduct_add' }">
                     <i class="fas fa-hands"></i>
@@ -226,40 +216,8 @@
                     Sales
                   </a></router-link>
               </li>
-              <!-- <li class="nav-item"
-                :class="{ 'menu-open': this.$route.name == 'reports' || this.$route.name == 'yearly_report' || this.$route.name == 'transaction_report' }">
-                <a href="#" class="nav-link">
-                  <i class="fas fa-table"></i>
-                  <p>
-                    Reports
-                    <i class="right fas fa-angle-left"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <router-link to="/transaction_report" class=""> <a href="#" class="nav-link">
-                        <i class="far fa-circle nav-icon"
-                          :class="{ 'fa-dot-circle': this.$route.name == 'transaction_report' }"></i>
-                        Daily
-                      </a></router-link>
-                  </li>
-                  <li class="nav-item">
-                    <router-link to="/reports" class=""> <a href="#" class="nav-link">
-                        <i class="far fa-circle nav-icon" :class="{ 'fa-dot-circle': this.$route.name == 'reports' }"></i>
-                        Monthly
-                      </a></router-link>
-                  </li>
-                  <li class="nav-item">
-                    <router-link to="/yearly_report" class=""><a href="#" class="nav-link">
-                        <i class="far fa-circle nav-icon"
-                          :class="{ 'fa-dot-circle': this.$route.name == 'yearly_report' }"></i>
-                        Yearly
-                      </a></router-link>
-                  </li>
-                </ul>
-              </li> -->
             </ul>
-          </li>
+          </li> -->
 
           <!-- <li class="nav-item">
               <router-link to="/stocks" class="collapse-item"> <a href="#" class="nav-link" id="usermenu" :class="{'active':this.$route.name=='stocks'}">
