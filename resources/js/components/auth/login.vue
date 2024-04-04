@@ -1,8 +1,5 @@
 <template>
     <div class="hold-transition login-page">
-        <!-- <div class="text-center">
-            <img :src="img" alt="" class="profile-user-img img-fluid img-circle">
-        </div> <br> -->
         <div class="login-box">
             <div class="card card-outline card-primary">
                 <div class="card-header text-center">
@@ -37,16 +34,13 @@
                         <hr>
                     </form>
                 </div>
-                <!-- /.card-body -->
             </div>
-            <!-- /.card -->
         </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
 @import "../../../../public/backend2/dist/css/adminlte.min.css";
-/* {{ asset('backend2/dist/css/adminlte.min.css') }} */
 </style>    
 
 <script type="text/javascript">
@@ -54,9 +48,7 @@
 import api from '../../Helpers/api';
 export default {
     created() {
-        if (!User.loggedIn()) {
-            //  this.$router.push({name: '/'})
-        }
+        
     },
 
     data() {
@@ -79,29 +71,8 @@ export default {
                         icon: 'success',
                         title: 'Signed-in Successfully'
                     })
-                    //this.$router.push({ name: 'manage_session' })
                     location = '/manage_session'
                 })
-           
-            /* api.post('auth/login', this.form)
-                .then(response => {
-                    this.errors = true;
-                    User.responseAfterLogin(response)
-                    location = '/manage_session'
-                    Toast.fire({
-                        icon: 'success',
-                        title: 'Signed-in Successfully'
-                    })
-                })
-                .catch(error => error ? this.errors = true : false)
-                .catch(
-
-                    Toast.fire({
-                        icon: 'warning',
-                        title: 'User Not Found!'
-                    }),
-                    console.log(this.errors)
-                ) */
         }
     },
 }
