@@ -1,10 +1,10 @@
 <template>
   <transition name="modal">
     <div class="modal-mask">
-      <div class="modal-wrapper">
+      <div class="modal-wrapper  modal-lg">
         <div class="modal-container">
           <div class="modal-header">
-            <slot name="header" v-if="patientid==0">Add Session</slot>
+            <slot name="header" v-if="patientid==0">Add IP Address</slot>
             <slot name="header" v-else>Edit Session</slot>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="$emit('close')">
               <span aria-hidden="true">&times;</span>
@@ -14,27 +14,13 @@
             <slot name="body">
               <form class="user" @submit.prevent="save" enctype="multipart/form-data">
                 <div class="card-body">
-                  <div class="form-group" v-if="patientid==0">
-                    <label for="exampleInputEmail1">Patient <font color="red">*</font></label>
-                    <patientComponent ref="patientVal" :patientid="form.pxid" @return-response="getReturnResponse"></patientComponent>
+                  <div class="form-group col-md-3">
+                    <label for="exampleInputEmail1">IP Address</label>
+                    <input type="text" class="form-control" />
                   </div>
-                  <div class="form-group" v-else>
-                    <label for="exampleInputEmail1">Patient: {{ patientName }} </label>
-                  </div>                  
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Attending Phyiscian: {{ attendingDoctor }} </label>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Date <font color="red">*</font></label>
-                    <datepicker name="date" v-model="form.schedule" input-class="dpicker" :bootstrap-styling=true>
-                    </datepicker>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Doctor In-Charge</label>
-                    <select class="form-control" v-model="form.doctor">
-                      <option selected value="0">None</option>
-                      <option v-for="e in doctors" :value="e.id">{{ e.name }}</option>
-                    </select>
+                  <div class="form-group col-md-3">
+                    <label for="exampleInputEmail1">Comments</label>
+                    <textarea rows="" cols="" class="form-control"></textarea>
                   </div>
                 </div>
                 <div class="card-footer">
@@ -257,8 +243,9 @@ export default {
 }
 
 .modal-container {
+  position: absolute;
   width: 75%;
-  height: 100%;
+  height: 46%;
   margin: 149px 309px;
   padding: 20px 30px;
   background-color: #fff;

@@ -24,8 +24,6 @@
                   </button>
                 </div>
                 <div class="card-body">
-                
-
                   <ul class="list-group">
                     <li v-for="e in filtersearch" :key="e.id" class="list-group-item">
                       <div class="row">
