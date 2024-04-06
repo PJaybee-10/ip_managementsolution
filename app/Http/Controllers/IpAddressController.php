@@ -29,14 +29,14 @@ class IpAddressController extends Controller
         $start = $request->start ? $request->start : 0;
         $val = $request->searchTerm;
         if ($val != '' || $start > 0) {
-            $data = DB::connection('mysql')->select("select * from ipaddress  where ip_address like '%" . $val . "%' or  description like '%" . $val . "%' LIMIT $length offset $start");
-            $count = DB::connection('mysql')->select("select * from ipaddress  where ip_address like '%" . $val . "%' or  description like '%" . $val . "%' ");
+            $data = DB::connection('mysql')->select("select * from ipaddresses  where ip_address like '%" . $val . "%' or  description like '%" . $val . "%' LIMIT $length offset $start");
+            $count = DB::connection('mysql')->select("select * from ipaddresses  where ip_address like '%" . $val . "%' or  description like '%" . $val . "%' ");
         } else {
-            $data = DB::connection('mysql')->select("select * from ipaddress LIMIT $length");
-            $count = DB::connection('mysql')->select("select * from ipaddress");
+            $data = DB::connection('mysql')->select("select * from ipaddresses LIMIT $length");
+            $count = DB::connection('mysql')->select("select * from ipaddresses");
         }
 
-        $count_all_record = DB::connection('mysql')->select("select count(*) as count from ipaddress");
+        $count_all_record = DB::connection('mysql')->select("select count(*) as count from ipaddresses");
 
         $data_array = array();
 
@@ -94,7 +94,7 @@ class IpAddressController extends Controller
 
     public function update(Request $request)
     {
-        IpAddress::where(['id' => $request->ipadd_id])->update([
+        IpAddress::where(['id' => $request->id])->update([
             'ip_address' => $request->ipaddress,
             'description' => $request->comments,
             'updated_by' => auth()->id(),

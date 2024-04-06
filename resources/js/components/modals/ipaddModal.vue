@@ -82,8 +82,10 @@ export default {
         api
           .post(url, this.form)
           .then((response) => {
+            if(this.ipid==0){
             this.form.ipaddress = "";
             this.form.comments = "";
+            }
             Toast.fire({
               icon: "success",
               title: "Saved successfully",

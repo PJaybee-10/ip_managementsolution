@@ -19,6 +19,8 @@ class CreateIpaddressesTable extends Migration
             $table->string('description');
             $table->timestamp('created_dt');
             $table->integer('created_by');
+            $table->timestamp('updated_dt');
+            $table->integer('updated_by');
         });
     }
 
