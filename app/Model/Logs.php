@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Logs extends Model
 {
-    protected $table = "failed_scheduled";
+    protected $table = "logs";
 
     protected $primaryKey = "id";
 
@@ -15,8 +15,5 @@ class Logs extends Model
     protected $fillable = [
         'id',
         'action',
-        'created_by',
-        'created_dt',
-        'schedule'
     ];
 }

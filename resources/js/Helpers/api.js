@@ -1,10 +1,7 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-  //baseURL: 'http://premier.census.net/api/',
-  //baseURL: 'http://rmci-testserver/api/',
-  baseURL: 'http://DESKTOP-HKDISKR/api/',
-  //baseURL: 'http://premier_nephro.care.net/api/',ss
+  baseURL: 'http://192.168.70.98:8086/api/',
   headers: {
     'Content-Type': 'application/json',
     'Authorization': "Bearer ".concat(localStorage.getItem('token')),
@@ -16,7 +13,8 @@ export default {
     return apiClient.get(url);
   },
   post(url,data) {
-    return apiClient.post(url, data)/* .catch(error => {
+    return apiClient.post(url, data)
+    /* .catch(error => {
       if(error.response.data.message == 'Token has expired'){
        this.$router.push({ name: '/' });
        Toast.fire({
