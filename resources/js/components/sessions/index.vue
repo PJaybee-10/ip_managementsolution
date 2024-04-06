@@ -41,19 +41,7 @@
                         <button type="button" @click="editIp(e.id)" class="btn btn-success">Edit</button>
                       </td>
                     </tr>
-                  </table>                                                                                                         
-                  <nav aria-label="Page navigation example" class="to-right">
-                    <ul class="pagination">
-                      <li class="page-item" v-for="(e, index) in this.countRecords">
-                        <a class="page-link" @click="getPageNo(index + 1)" href="#">{{
-                          index + 1
-                        }}</a>
-                      </li>
-                    </ul>
-                  </nav>
-                  <nav aria-label="Page navigation example" class="">
-                    {{ showing }}
-                  </nav>
+                  </table>            
                 </div>
               </div>
             </div>
@@ -82,9 +70,6 @@ export default {
       ipadd_id: 0,
       showModal: false,
       ipadd_list: [],
-      searchTerm: "",
-      countRecords: 0,
-      showing: "",
     };
   },
   computed: {
@@ -105,17 +90,6 @@ export default {
           this.ipadd_list = response.data.data;
           this.countRecords = response.data.count;
           this.isHidden = true;
-        })
-        .catch((error) => (this.errors = error.response.data.errors));
-    },
-    getPageNo(id) {
-      this.isHidden = false;
-      api
-        .post("schedule")
-        .then((response) => {
-          this.ipadd_list = response.data[0].data;
-          this.countRecords = response.data[0].count;
-          (this.showing = response.data[0].showing), (this.isHidden = true);
         })
         .catch((error) => (this.errors = error.response.data.errors));
     },

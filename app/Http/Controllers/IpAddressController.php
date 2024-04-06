@@ -30,13 +30,9 @@ class IpAddressController extends Controller
         $val = $request->searchTerm;
         if ($val != '' || $start > 0) {
             $data = DB::connection('mysql')->select("select * from ipaddresses  where ip_address like '%" . $val . "%' or  description like '%" . $val . "%' LIMIT $length offset $start");
-            $count = DB::connection('mysql')->select("select * from ipaddresses  where ip_address like '%" . $val . "%' or  description like '%" . $val . "%' ");
         } else {
             $data = DB::connection('mysql')->select("select * from ipaddresses LIMIT $length");
-            $count = DB::connection('mysql')->select("select * from ipaddresses");
         }
-
-        $count_all_record = DB::connection('mysql')->select("select count(*) as count from ipaddresses");
 
         $data_array = array();
 
@@ -47,25 +43,8 @@ class IpAddressController extends Controller
             $arr['desc'] = $value->description;
             $data_array[] = $arr;
         }
-        $page = sizeof($count) / $length;
-        $getDecimal = explode(".", $page);
-        $page_count = round(sizeof($count) / $length);
-        if (sizeof($getDecimal) == 2) {
-            if ($getDecimal[1] < 5) {
-                $page_count = $getDecimal[0] + 1;
-            }
-        }
         $datasets = array(
-            
-                "data" => $data_array,
-                "count" => $page_count,
-                "showing" =>
-                    sizeof($count_all_record) > 0 ?
-                    "Showing " . (($start + 10) - 9) . " to " . ($start + 10 > $count_all_record[0]->count ?
-                        $count_all_record[0]->count :
-                        $start + 10) . " of " . $count_all_record[0]->count : '',
-                "patient" => $data_array
-            
+            "data" => $data_array,
         );
         return response()->json($datasets);
     }
