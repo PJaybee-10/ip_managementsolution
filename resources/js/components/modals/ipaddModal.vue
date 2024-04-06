@@ -4,7 +4,7 @@
       <div class="modal-wrapper modal-lg">
         <div class="modal-container">
           <div class="modal-header">
-            <slot name="header" v-if="isEdit == 0">Add IP Address</slot>
+            <slot name="header" v-if="ipid == 0">Add IP Address</slot>
             <slot name="header" v-else>Edit IP Address</slot>
             <button
               type="button"
@@ -44,38 +44,43 @@
 import api from "../../Helpers/api";
 export default {
   props: {
-    header_id: {
-      type: Number,
-      default: 0,
-    },
-    isEdit: {
+    ipid: {
       type: Number,
       default: 0,
     },
   },
-  created() {},
+  created() {
+    if(this.ipid!=0){
+      this.getIpaddDetails();
+    }
+  },
   data() {
     return {
       form: {
-        id: 0,
+        id: this.ipid,
         ipaddress: "",
         comments: "",
       },
     };
   },
   methods: {
-    getDoctors() {
+    getIpaddDetails() {
       api
-        .get("getDoctors")
+        .get("ipaddress-edit/"+this.ipid)
         .then((response) => {
-          this.doctors = response.data;
+          this.form.ipaddress = response.data.ip_address;
+          this.form.comments = response.data.description;
         })
         .catch((error) => {});
     },
     save() {
-      if (this.form.ipaddress != "" && this.form.comments != "") {
+      if (this.form.ipaddress != "" && this.form.comments != "") {  
+        let url = "ipaddress-add";
+        if(this.form.id!=0){
+          url = "ipaddress-update"
+        }
         api
-          .post("ipaddress-add", this.form)
+          .post(url, this.form)
           .then((response) => {
             this.form.ipaddress = "";
             this.form.comments = "";

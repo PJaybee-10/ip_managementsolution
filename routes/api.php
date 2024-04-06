@@ -46,7 +46,9 @@ Route::match(['get','post'],'destroyLab/{id}','PrescriptionController@destroyLab
 Route::match(['get','post'],'destroyMeds/{id}','PrescriptionController@destroyMeds');
 
 Route::match(['get','post'],'ipaddress-add','IpAddressController@store');
+Route::match(['get','post'],'ipaddress-update','IpAddressController@update');
 Route::match(['get','post'],'ipaddress-list','IpAddressController@index');
+Route::match(['get','post'],'ipaddress-edit/{id}','IpAddressController@edit');
 
 
 Route::match(['get','post'],'addusers','UserController@registerUser');

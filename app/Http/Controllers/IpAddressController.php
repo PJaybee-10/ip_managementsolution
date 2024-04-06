@@ -94,7 +94,7 @@ class IpAddressController extends Controller
 
     public function update(Request $request)
     {
-        IpAddress::where(['id' => $request->id])->update([
+        IpAddress::where(['id' => $request->ipadd_id])->update([
             'ip_address' => $request->ipaddress,
             'description' => $request->comments,
             'updated_by' => auth()->id(),

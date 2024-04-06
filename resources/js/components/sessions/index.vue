@@ -38,7 +38,7 @@
                         {{ e.desc }}
                       </td>
                       <td>
-                        <button type="button" class="btn btn-success">Edit</button>
+                        <button type="button" @click="editIp(e.id)" class="btn btn-success">Edit</button>
                       </td>
                     </tr>
                   </table>                                                                                                         
@@ -62,8 +62,8 @@
         <ipAddressModal
           v-if="showModal"
           @close="showModal = false"
-          :sessionid="0"
-          v-on:close="todayPatient"
+          :ipid="ipadd_id"
+          v-on:close="filterEmployee"
         >
         </ipAddressModal>
       </section>
@@ -79,10 +79,7 @@ export default {
   },
   data() {
     return {
-      form: {
-        searchTerm2: null,
-        start: 0,
-      },
+      ipadd_id: 0,
       showModal: false,
       ipadd_list: [],
       searchTerm: "",
@@ -101,10 +98,9 @@ export default {
     filterEmployee() {
       this.ipadd_list = [];
       this.countRecords = null;
-      this.form.start = 0;
       this.isHidden = false;
       api
-        .post("ipaddress-list", this.form)
+        .post("ipaddress-list")
         .then((response) => {
           this.ipadd_list = response.data.data;
           this.countRecords = response.data.count;
@@ -113,10 +109,9 @@ export default {
         .catch((error) => (this.errors = error.response.data.errors));
     },
     getPageNo(id) {
-      this.form.start = (id - 1) * 10;
       this.isHidden = false;
       api
-        .post("schedule", this.form)
+        .post("schedule")
         .then((response) => {
           this.ipadd_list = response.data[0].data;
           this.countRecords = response.data[0].count;
@@ -124,6 +119,10 @@ export default {
         })
         .catch((error) => (this.errors = error.response.data.errors));
     },
+    editIp(e){
+      this.ipadd_id = e
+      this.showModal = true
+    }
   },
 };
 </script>
