@@ -23,19 +23,13 @@ class LogsController extends Controller
 
     public function report(Request $request)
     {
-        date_default_timezone_set('Asia/Manila');
-        $fdate = date_format(date_create($request->fdate),'Y-m-d');
-        $tdate = date_format(date_create($request->tdate),'Y-m-d');
-        $data = DB::connection('mysql')->select(" SELECT * from failed_scheduled  where schedule between '$fdate' and '$tdate' group by status");
+        $data = Logs::all();
         $data_array = array();
-
         foreach ($data as $key => $value) {
             $arr = array();
-            $arr['status'] =  $value->status;
-            $arr['date'] =  $value->schedule;
+            $arr['action'] =  $value->action;
             $data_array[] = $arr;
         }
-        $datasets['data'] = $data_array;
-        return response()->json($datasets);
+        return response()->json($data_array);
     }
 }
