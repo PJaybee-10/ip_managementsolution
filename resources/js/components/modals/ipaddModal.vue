@@ -20,7 +20,7 @@
             <slot name="body">
               <form class="user" @submit.prevent="save" enctype="multipart/form-data">
                 <div class="card-body">
-                  <div class="form-group col-md-3">
+                  <div class="form-group col-md-3" :class="{hidden: ipid>0}" >
                     <label for="exampleInputEmail1">IP Address</label>
                     <input type="text" class="form-control" v-model="form.ipaddress"/>
                   </div>

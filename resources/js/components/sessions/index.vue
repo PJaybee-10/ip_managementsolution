@@ -17,7 +17,7 @@
                   <h3 class="card-title">&nbsp;</h3>
                   <button
                     type="button"
-                    @click="showModal = true"
+                    @click="showModal = true;ipadd_id=0"
                     class="btn btn-primary btn-sm pull-left"
                   >
                     Add
