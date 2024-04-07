@@ -74,7 +74,7 @@ export default {
         .catch((error) => {});
     },
     save() {
-      if (this.form.ipaddress != "" && this.form.comments != "") {  
+      if (this.form.ipaddress != "" && this.form.comments != "" && !this.checkIpPattern()) {  
         let url = "ipaddress-add";
         if(this.form.id!=0){
           url = "ipaddress-update"
@@ -99,6 +99,14 @@ export default {
         });
       }
     },
+    checkIpPattern(){
+      let ip = this.form.ipaddress.split(".");
+      console.log(ip.length)
+      if(ip.length!=4){
+        return true;
+      }
+      return false;
+    }
   },
 };
 </script>
@@ -174,4 +182,12 @@ export default {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
+.my-swal {
+  display: -webkit-box;
+  display: flex;
+  position: fixed;
+  z-index: 300000;
+}
+
+
 </style>

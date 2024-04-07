@@ -38,13 +38,16 @@ Vue.component('footerComponent', require('./components/template/footer.vue').def
 const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
+    customClass: {
+      container: 'my-swal'
+    },
     showConfirmButton: false,
-    timer: 3000,
+    timer: 60000,
     timerProgressBar: true,
-    didOpen: (toast) => {
+    /* didOpen: (toast) => {
       toast.addEventListener('mouseenter', Swal.stopTimer)
       toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
+    } */
 });
 
 window.Toast = Toast

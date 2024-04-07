@@ -36,17 +36,7 @@ class Notification{
             text: 'Opps Wrong',
             timeout: 3000,
         }).show();
-    }  
-
-    image_Validation(){
-        new Noty({
-            type: 'error',
-            layout: 'topRight',
-            text: 'Upload images less than 1MB',
-            timeout: 3000,
-        }).show();
-    }  
-   
+    }
 }
    
 export default Notification = new Notification()
