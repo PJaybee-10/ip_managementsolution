@@ -25,7 +25,7 @@ composer install
 npm install
 ```
 ```bash
-cp .env.example .env
+copy .env.example .env
 ```
 ```bash
 php artisan key:generate
