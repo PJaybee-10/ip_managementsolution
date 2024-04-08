@@ -32,7 +32,7 @@ const Toast = Swal.mixin({
       container: 'my-swal'
     },
     showConfirmButton: false,
-    timer: 60000,
+    timer: 3000,
     timerProgressBar: true,
 });
 

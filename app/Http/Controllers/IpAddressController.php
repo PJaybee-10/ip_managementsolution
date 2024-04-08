@@ -20,22 +20,13 @@ class IpAddressController extends Controller
     public function __construct()
     {
         $this->middleware('JWT');
+        date_default_timezone_set('Asia/Manila');
     }
 
     public function index(Request $request)
     {
-        date_default_timezone_set('Asia/Manila');
-        $length = 10;
-        $start = $request->start ? $request->start : 0;
-        $val = $request->searchTerm;
-        if ($val != '' || $start > 0) {
-            $data = DB::connection('mysql')->select("select * from ipaddresses  where ip_address like '%" . $val . "%' or  description like '%" . $val . "%' LIMIT $length offset $start");
-        } else {
-            $data = DB::connection('mysql')->select("select * from ipaddresses LIMIT $length");
-        }
-
+        $data = IpAddress::all();
         $data_array = array();
-
         foreach ($data as $key => $value) {
             $arr = array();
             $arr['id'] = $value->id;
@@ -51,7 +42,6 @@ class IpAddressController extends Controller
 
     public function store(Request $request)
     {
-        date_default_timezone_set('Asia/Manila');
         $p = new IpAddress;
         $p->ip_address = $request->ipaddress;
         $p->description = $request->comments;
@@ -79,6 +69,10 @@ class IpAddressController extends Controller
             'updated_by' => auth()->id(),
             'updated_dt' => date('Y-m-d'),
         ]);
+
+        $l = new Logs;
+        $l->action =  auth()->user()->name.' update the comments/label of ip address '. $request->ipaddress.' to '.$request->comments.' @ '.date("F j, Y H:i:s");
+        $l->save();
         return response()->json(['message' => 'Updated successfully.'], 200);
     }
 
