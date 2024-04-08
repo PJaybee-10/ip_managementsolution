@@ -15,12 +15,12 @@ class CreateIpaddressesTable extends Migration
     {
         Schema::create('ipaddresses', function (Blueprint $table) {
             $table->id();
-            $table->string('ip_address');
-            $table->string('description');
-            $table->timestamp('created_dt');
-            $table->integer('created_by');
-            $table->timestamp('updated_dt');
-            $table->integer('updated_by');
+            $table->string('ip_address')->nullable();
+            $table->string('description')->nullable();
+            $table->timestamp('created_dt')->nullable();
+            $table->integer('created_by')->nullable();
+            $table->timestamp('updated_dt')->nullable();
+            $table->integer('updated_by')->nullable();
         });
     }
 
