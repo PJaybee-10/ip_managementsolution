@@ -15,7 +15,7 @@
 </head>
 <body class="hold-transition sidebar-mini">
 <div id="app">
-  
+
       <router-view></router-view>
 
 </div>

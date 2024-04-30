@@ -16,7 +16,7 @@ class Notification{
             text: 'Are you sure?',
             timeout: 3000,
         }).show();
-    } 
+    }
 
 
     error(){
@@ -38,5 +38,5 @@ class Notification{
         }).show();
     }
 }
-   
+
 export default Notification = new Notification()

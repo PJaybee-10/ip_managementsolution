@@ -14,7 +14,7 @@ class UserTest extends TestCase
      *
      * @return void
      */
-   
+
     function test_login_form() {
         $response = $this->get('/login');
 

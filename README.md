@@ -1,7 +1,7 @@
 # IP ADDRESS MANAGEMENT SOLUTION
  
 # Note
-This project was based on the existing project I've developed before.
+This project was based on the requirements of my technical assesment.
 
 ### Prerequisites
 

@@ -3,12 +3,12 @@
         <div class="login-box">
             <div class="card card-outline card-primary">
                 <div class="card-header text-center">
-                    <a href="javascript:void(0);" class="h1"><b>IP MANAGEMENT </b></a><br>
+                    <a href="javascript:void(0);" class="h1" v-once><b>IP MANAGEMENT</b></a><br>
                 </div>
                 <div class="card-body">
-                    <p class="login-box-msg">Sign in to start your session</p>
+                    <p class="login-box-msg" v-once>Sign in to start your session</p>
 
-                    <small class="text-danger" v-if="errors == true">Please check your login credentials.</small>
+                    <small class="text-danger" v-if="errors">Please check your login credentials.</small>
                     <form class="user" @submit.prevent="login">
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
@@ -41,14 +41,16 @@
 
 <style lang="scss" scoped>
 @import "../../../../public/backend2/dist/css/adminlte.min.css";
-</style>    
+</style>
 
-<script type="text/javascript">
+<script>
+import axios from 'axios'; // Import axios library
+import User from '../../Helpers/User'; // Import User helper
+import Toast from 'your-toast-library'; // Import Toast library
 
-import api from '../../Helpers/api';
 export default {
     created() {
-        
+        // Initialize any data or make API calls on component creation
     },
 
     data() {
@@ -58,25 +60,33 @@ export default {
                 password: null,
             },
             errors: false,
-            img: '../../../../backend2/premier.jpg'
+            img: require('../../../../backend2/premier.jpg') // Use require for image path
         }
     },
     methods: {
         login() {
-             axios.post('/api/auth/login', this.form)
+            axios.post('/api/auth/login', this.form)
                 .then(res => {
-                    this.errors = true;
-                    User.responseAfterLogin(res)
-                    Toast.fire({
-                        icon: 'success',
-                        title: 'Signed-in Successfully'
-                    })
-                    location = '/manage_session'
+                    // Check if login is successful
+                    if (res.data.success) {
+                        this.errors = false; // Reset errors
+                        User.responseAfterLogin(res.data); // Handle user data after login
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Signed-in Successfully'
+                        });
+                        this.$router.push('/manage_session'); // Navigate to manage session page
+                    } else {
+                        this.errors = true; // Show error message
+                    }
                 })
+                .catch(error => {
+                    console.error('Login failed:', error);
+                    this.errors = true; // Show error message
+                });
         }
     },
 }
-
 </script>
 
 <style></style>

@@ -15,7 +15,7 @@ Route::group([
     Route::post('addEmployee', 'AuthController@refresh');
 
     // try to transfer methods here
-    
+
 });
 Route::get('validate', 'AuthController@checkToken');
 

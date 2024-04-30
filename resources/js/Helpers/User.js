@@ -13,7 +13,7 @@ class User{
 			AppStorage.store(access_token,username,userid,usertype)
 		}
 	}
- 
+
 
 	hasToken(){
 		const storeToken = localStorage.getItem('token');
@@ -57,11 +57,11 @@ class User{
 				user_type: localStorage.getItem('user_type'),
 			  }); */
 			return localStorage.getItem('user_type');
-			
+
 		}
 	}
-	
- 
+
+
 }
 
 export default User = new User()

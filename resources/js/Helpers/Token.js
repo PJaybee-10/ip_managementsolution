@@ -10,8 +10,8 @@ class Token{
       //return payload.iss = "http://rmci-testserver/api/auth/login" || "http://rmci-testserver/api/auth/register" ? true : false
      }
      return false
-    }   
-   
+    }
+
     payload(token){
      const payload = token.split('.')[1]
      return this.decode(payload)
@@ -19,8 +19,8 @@ class Token{
 
     decode(payload){
      return JSON.parse(atob(payload))
-    } 
-   
+    }
+
    }
-   
+
    export default Token = new Token()
