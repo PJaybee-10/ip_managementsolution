@@ -2,36 +2,40 @@
 
 namespace Tests\Feature;
 
-use App\Model\User;
+use App\Models\User; // Updated namespace to match the actual namespace of the User model
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class UserTest extends TestCase
 {
+    use RefreshDatabase; // Added trait to refresh the database after each test
+
     /**
      * A basic feature test example.
      *
      * @return void
      */
-
-    function test_login_form() {
+    public function testLoginForm() // Renamed method to follow camelCase convention
+    {
         $response = $this->get('/login');
 
         $response->assertStatus(200);
     }
 
-    function test_user_duplication() {
-        $user1 = User::make([
+    public function testUserDuplication()
+    {
+        // Create two users with different email addresses
+        $user1 = User::factory()->create([
             'name' => 'Jan Dew',
             'email' => 'jan@ph.com'
         ]);
 
-        $user2 = User::make([
+        $user2 = User::factory()->create([
             'name' => 'Jan Dew',
             'email' => 'jan1@ph.com'
         ]);
 
-        $this->assertTrue($user1->name != $user2->name);
+        // Assert that the names of the users are not equal
+        $this->assertNotEquals($user1->name, $user2->name);
     }
 }

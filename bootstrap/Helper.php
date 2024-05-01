@@ -1,28 +1,44 @@
-<?php // Code within app\Helpers\Helper.php
+<?php
 
 namespace App\Helpers;
-use App\Model\Patients;
-use App\Model\Doctors;
-use App\User;
+
+use App\Models\Patient;
+use App\Models\Doctor;
+use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class Helper
 {
-    public static function patientDetail($id)
+    // Retrieve patient details by ID
+    public static function getPatientDetail($id)
     {
-        $patient_detail = Patients::where(["id"=>$id])->first();
-        return $patient_detail;
+        try {
+            return Patient::findOrFail($id);
+        } catch (ModelNotFoundException $e) {
+            // Handle the case when the patient is not found
+            return null;
+        }
     }
 
-    public static function doctorzDetail($id)
+    // Retrieve doctor details by ID
+    public static function getDoctorDetail($id)
     {
-        $Doctors_detail = Doctors::where(["id"=>$id])->first();
-        return $Doctors_detail;
+        try {
+            return Doctor::findOrFail($id);
+        } catch (ModelNotFoundException $e) {
+            // Handle the case when the doctor is not found
+            return null;
+        }
     }
 
-    
-    public static function userDetail($id)
+    // Retrieve user details by ID
+    public static function getUserDetail($id)
     {
-        $user_detail = User::where(["id"=>$id])->first();
-        return $user_detail;
+        try {
+            return User::findOrFail($id);
+        } catch (ModelNotFoundException $e) {
+            // Handle the case when the user is not found
+            return null;
+        }
     }
 }

@@ -1,21 +1,22 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Http;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
     /**
-     * A basic test example.
+     * Test if the home page returns a 200 status code.
      *
      * @return void
      */
-    public function testBasicTest()
+    public function testHomePage()
     {
+        // Send a GET request to the home page
         $response = $this->get('/');
 
+        // Assert that the response status code is 200
         $response->assertStatus(200);
     }
 }
